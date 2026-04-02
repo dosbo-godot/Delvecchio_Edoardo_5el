@@ -1,21 +1,60 @@
 {
-    "1° Esperimento": [
+    "Scegli un esperimento!": [
         {
             "L1": {
                 "text": "Esperimenti di Faraday",
-                "font": "Arial 15 bold"
+                "font": "Arial 14 bold"
             },
             "L2": {
                 "text": "Nel 1831, Michael Faraday condusse una serie di esperimenti per verificare se il magnetismo potesse generare elettricità. Attraverso prove con magneti e bobine di filo conduttore, dimostrò che il movimento di un campo magnetico produce una corrente elettrica in un circuito vicino.\nQuesti test portarono alla formulazione del principio di induzione elettromagnetica, basato sull'idea che una variazione nel tempo del flusso magnetico genera una forza elettromotrice. Da queste osservazioni derivarono in seguito lo sviluppo dei primi generatori e trasformatori elettrici.\nQuesto programma visualizza i 5 esperimenti in modo interattivo.",
-                "font": "Arial 12"
+                "font": "Arial 11"
             },
             "L3": {
-                "text": "Ogni esperimento, selezionabile dal menù a tendian in alto a sinistra, è composto da diverse diapositive che lo spiegano. Per navigare le varie diapositive utilizzare i pulsanti appositi qui in basso.",
-                "font": "Arial 12"
+                "text": "Ogni esperimento, selezionabile dal menù a tendina in alto a sinistra, è composto da diverse diapositive che lo spiegano. Per navigare le varie diapositive utilizzare i pulsanti appositi qui in basso.",
+                "font": "Arial 11"
             },
             "L4": {
                 "text": "Clicca il pulsante per avanzare alla slide successiva",
-                "font": "Arial 12 bold"
+                "font": "Arial 11 bold"
+            }
+        },
+        {
+            "L1": {
+                "text": "Per iniziare",
+                "font": "Arial 25 bold"
+            },
+            "L2": {
+                "text": "Per visualizzare il primo esperimento premere il pulsante in alto a sinistra che dice \"Scegli un esperimento!\" e seleziona:",
+                "font": "Arial 14"
+            },
+            "L3": {
+                "text": "1° Esperimento",
+                "font": "Arial 16 bold"
+            }
+        },
+        {
+            "L1": {
+                "text": "Per",
+                "font": "Arial 14 bold"
+            },
+            "B2": {
+                "text": "Nel 1831, Michael Faraday condusse una serie di esperimenti per verificare se il magnetismo potesse generare elettricità. Attraverso prove con magneti e bobine di filo conduttore, dimostrò che il movimento di un campo magnetico produce una corrente elettrica in un circuito vicino.\nQuesti test portarono alla formulazione del principio di induzione elettromagnetica, basato sull'idea che una variazione nel tempo del flusso magnetico genera una forza elettromotrice. Da queste osservazioni derivarono in seguito lo sviluppo dei primi generatori e trasformatori elettrici.\nQuesto programma visualizza i 5 esperimenti in modo interattivo."
+            },
+            "S3": {
+                "from_": 0,
+                "to": 100,
+                "orient": "horizontal",
+                "length": 100
+            },
+            "F4": {
+                "bg": "green"
+            }
+        }
+    ],
+    "1° Esperimento": [
+        {
+            "L1": {
+                "text": "Benvenuto nel 1° Esperimento... Lavori in corso ..."
             }
         }
     ]
