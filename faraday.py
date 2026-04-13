@@ -1,9 +1,74 @@
 import tkinter as tk
 from tkinter import ttk
 import json
+import random
 
 GREY = '#e8e8e8'
 LARGHEZZA_LATERALE = 300
+
+class GestoreCanvas:
+    def __init__(self):
+        self.canvas : tk.Canvas = None
+
+        # PARAMETRI GENERICI
+        self.delta_potenziale = 0
+        self.resistenza = 0
+        self.corrente = 0
+        self.corrente_indotta = 0
+        # PARAMETRI 1°
+        # PARAMETRI 2°
+        # PARAMETRI 3°
+        # PARAMETRI 4°
+        # PARAMETRI 5°
+
+
+    def disegna(self):
+        x = random.randint(0, 400)
+        self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='red')
+
+    # 150x180
+    def disegnaGalvanometro(self):
+        larghezza = self.canvas.winfo_width()
+        LARGHEZZA_GALVANOMETRO = 180
+        ALTEZZA_GALVANOMETRO = 150
+
+        PADX = 10
+        PADY = 10
+
+        #canvasGalvanometro = tk.Canvas()
+        self.img = tk.PhotoImage(file='galvanometro.gif')
+        self.canvas.create_image(larghezza-(LARGHEZZA_GALVANOMETRO//2) - PADX, ALTEZZA_GALVANOMETRO//2 + PADY, image = self.img)
+
+
+    def disegnaPrimo(self):
+        self.canvas.delete('all')
+
+        x = random.randint(0, 400)
+        self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='grey')
+
+    def disegnaSecondo(self):
+        self.canvas.delete('all')
+
+        x = random.randint(0, 400)
+        self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='yellow')
+
+    def disegnaTerzo(self):
+        self.canvas.delete('all')
+
+        x = random.randint(0, 400)
+        self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='blue')
+
+    def disegnaQuarto(self):
+        self.canvas.delete('all')
+
+        x = random.randint(0, 400)
+        self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='black')
+
+    def disegnaQuinto(self):
+        self.canvas.delete('all')
+
+        x = random.randint(0, 400)
+        self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='green')
 
 class GestoreDialogo:
     def __init__(self) -> None:
@@ -13,15 +78,20 @@ class GestoreDialogo:
         self.index_diapositiva = 0
         self.diapositive : list[dict[str:str]]= self.config_dialogo[self.esperimento]
     
-    def diapositivaSucc(self):
-        if self.index_diapositiva < len(self.diapositive):
+    def diapositivaSucc(self) -> None:
+        if self.index_diapositiva < len(self.diapositive)-1:
             self.index_diapositiva += 1
+            self.aggiornaContoDiapositiva()
+
             self.svuotaRoot(self.root)
             self.caricaContenuto(self.root)
+
     
-    def diapositivaPrec(self):
-        if self.index_diapositiva < len(self.diapositive):
+    def diapositivaPrec(self) -> None:
+        if self.index_diapositiva != 0:
             self.index_diapositiva -= 1
+            self.aggiornaContoDiapositiva()
+
             self.svuotaRoot(self.root)
             self.caricaContenuto(self.root)
 
@@ -29,12 +99,31 @@ class GestoreDialogo:
         self.esperimento = scelta
         self.diapositive = self.config_dialogo[self.esperimento]
         self.index_diapositiva = 0
+        self.aggiornaContoDiapositiva()
         self.svuotaRoot(self.root)
         self.caricaContenuto(self.root)
 
-    def svuotaRoot(self, root):
+        if scelta == '1° Esperimento':
+            gestore_canvas.disegnaPrimo()
+            gestore_canvas.disegnaGalvanometro()
+        elif scelta == '2° Esperimento':
+            gestore_canvas.disegnaSecondo()
+        elif scelta == '3° Esperimento':
+            gestore_canvas.disegnaTerzo()
+        elif scelta == '4° Esperimento':
+            gestore_canvas.disegnaQuarto()
+        elif scelta == '5° Esperimento':
+            gestore_canvas.disegnaQuinto()
+
+    def svuotaRoot(self, root : tk.Frame):
         for widget in root.winfo_children():
             widget.destroy()
+    
+    def registraDiapositiva(self, link : tk.StringVar):
+        self.labelDiapositiva = link
+
+    def aggiornaContoDiapositiva(self):
+        self.labelDiapositiva.set(f'{self.index_diapositiva+1}/{len(self.diapositive)}')
     
     def caricaContenuto(self, root : tk.Frame):
         self.root = root
@@ -91,6 +180,7 @@ def caricaFrameInferiore(root, global_root):
 
     caricaFrameLaterale(frame_inferiore, global_root)
     canvas = tk.Canvas(frame_inferiore, bg='white')
+    gestore_canvas.canvas = canvas
 
     canvas.grid(row=0, column=0, sticky='nsew')
 
@@ -134,12 +224,14 @@ def caricaFrameNavigazione(root, global_root):
       
     diapositiva = tk.StringVar(global_root)
     diapositiva.set(f'{gestore_dialogo.index_diapositiva+1}/{len(gestore_dialogo.diapositive)}')
-    contatore_diapositive = tk.Label(frame_navigazione, textvariable=diapositiva, bg=GREY) # DOVREBBE ENTRARE IN COMUNICAZIONE CON CLASSE
+    gestore_dialogo.registraDiapositiva(diapositiva)
+    contatore_diapositive = tk.Label(frame_navigazione, textvariable=diapositiva, bg=GREY)
 
     bottone_sx.grid(row=0, column=0, sticky='nswe')
     contatore_diapositive.grid(row=0, column=1, sticky='nswe')
     bottone_dx.grid(row=0, column=2, sticky='nswe')
 
+gestore_canvas = GestoreCanvas()
 gestore_dialogo = GestoreDialogo()
 main = caricaRadice()
 main.mainloop()
