@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import json
 import random
+import math
 
 GREY = '#e8e8e8'
 LARGHEZZA_LATERALE = 300
@@ -14,6 +15,7 @@ class GestoreCanvas:
         self.delta_potenziale = 0
         self.resistenza = 0
         self.corrente = 0
+        self.corrente_max = 100
         self.corrente_indotta = 0
         # PARAMETRI 1°
         # PARAMETRI 2°
@@ -31,13 +33,24 @@ class GestoreCanvas:
         larghezza = self.canvas.winfo_width()
         LARGHEZZA_GALVANOMETRO = 180
         ALTEZZA_GALVANOMETRO = 150
+        RAGGIO = 113
 
         PADX = 10
         PADY = 10
+        
+        XCENTRO = larghezza-100
+        YCENTRO = 146
 
         #canvasGalvanometro = tk.Canvas()
         self.img = tk.PhotoImage(file='galvanometro.gif')
         self.canvas.create_image(larghezza-(LARGHEZZA_GALVANOMETRO//2) - PADX, ALTEZZA_GALVANOMETRO//2 + PADY, image = self.img)
+        
+        alfa = 0.921 + ((1.57*self.corrente)/self.corrente_max)
+        x = math.sin(alfa)*RAGGIO
+        y = math.cos(alfa)*RAGGIO
+        
+        self.canvas.create_line(XCENTRO, YCENTRO, larghezza-x, y, fill='red', width=4)
+        print(larghezza-100, larghezza-190)
 
 
     def disegnaPrimo(self):
@@ -45,6 +58,8 @@ class GestoreCanvas:
 
         x = random.randint(0, 400)
         self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='grey')
+        
+        self.disegnaGalvanometro()
 
     def disegnaSecondo(self):
         self.canvas.delete('all')
@@ -79,6 +94,7 @@ class GestoreDialogo:
         self.diapositive : list[dict[str:str]]= self.config_dialogo[self.esperimento]
     
     def diapositivaSucc(self) -> None:
+        gestore_canvas.corrente += 5
         if self.index_diapositiva < len(self.diapositive)-1:
             self.index_diapositiva += 1
             self.aggiornaContoDiapositiva()
@@ -88,6 +104,7 @@ class GestoreDialogo:
 
     
     def diapositivaPrec(self) -> None:
+        gestore_canvas.corrente -= 5
         if self.index_diapositiva != 0:
             self.index_diapositiva -= 1
             self.aggiornaContoDiapositiva()
@@ -105,7 +122,6 @@ class GestoreDialogo:
 
         if scelta == '1° Esperimento':
             gestore_canvas.disegnaPrimo()
-            gestore_canvas.disegnaGalvanometro()
         elif scelta == '2° Esperimento':
             gestore_canvas.disegnaSecondo()
         elif scelta == '3° Esperimento':
@@ -133,6 +149,7 @@ class GestoreDialogo:
             root.rowconfigure(i, weight=1)
         i = 0
         for tipo_widget, configurazione in widgets.items():
+            widget = None
             if tipo_widget[0] == 'L':
                 widget = tk.Label(root, wraplength=LARGHEZZA_LATERALE-30, bg=GREY, **configurazione)
             elif tipo_widget[0] == 'S':
