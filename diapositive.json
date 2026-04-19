@@ -53,8 +53,11 @@
     ],
     "1° Esperimento": [
         {
-            "L1": {
-                "text": "Benvenuto nel 1° Esperimento... Lavori in corso ..."
+            "S1": {
+                "from_": -100,
+                "to": 100,
+                "orient": "horizontal",
+                "length": 150
             }
         }
     ],

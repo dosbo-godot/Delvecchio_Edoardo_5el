@@ -16,25 +16,52 @@ class GestoreCanvas:
         self.delta_potenziale = 0
         self.resistenza = 0
         self.corrente_potenziale = 0
-        self.corrente = -100
+        self.corrente = 0
         self.corrente_max = 100
         self.corrente_indotta = 0
         self.fps = 10
         self.delta = 1000//self.fps
         # PARAMETRI 1°
+        self.img_galvanometro = tk.PhotoImage(file='galvanometroMK2.gif')
+        self.img_esperimento1 = tk.PhotoImage(file='esperimento1.gif')
+        self.img_interr_aperto = tk.PhotoImage(file='interruttoreAperto.gif')
+        self.img_interr_chiuso = tk.PhotoImage(file='interruttoreChiuso.gif')
         # PARAMETRI 2°
         # PARAMETRI 3°
         # PARAMETRI 4°
         # PARAMETRI 5°
 
- 
-    def disegna(self):
-        x = random.randint(0, 400)
-        self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='red')
+    # =================================== PRIMO ===================================
+    def disegnaPrimo(self):
+        larghezza = self.canvas.winfo_width()
+        altezza = self.canvas.winfo_height()
+        self.canvas.delete('all')
+
+        # creazione iniziale di oggetti grafici
+        esp = self.canvas.create_image(larghezza//2, altezza//2, image=self.img_esperimento1)
+        self.bottone_interruttore = tk.Button(radice, image=self.img_interr_aperto, command=self.interruttorePremuto)
+        self.bottone_interruttore.aperto = 1
+        interruttore = self.canvas.create_window(larghezza//2, altezza//2, window=self.bottone_interruttore)
+        galva = self.canvas.create_image(0,0, image = self.img_galvanometro)
+        ago = self.canvas.create_line(0, 0, 0, 0, fill='red', width=4)
+
+        self.loopPrimo(esp, interruttore, galva, ago)
+
+    def loopPrimo(self, espID, interruttoreID, galvaID, agoID):
+        larghezza = self.canvas.winfo_width()
+        altezza = self.canvas.winfo_height()
+
+        # aggiornamento oggetti grafici
+        self.canvas.coords(espID, (larghezza//2, altezza//2))
+        self.canvas.coords(interruttoreID, (larghezza//2-145, altezza//2-167))
+        self.aggiornaGalvanometro(larghezza, galvaID, agoID)
+        
+        if gestore_dialogo.esperimento == '1° Esperimento':
+            self.canvas.after(1000//self.fps, self.loopPrimo, espID, interruttoreID, galvaID, agoID)
+        else: return 0
 
     # 150x180
-    def disegnaGalvanometro(self):
-        larghezza = self.canvas.winfo_width()
+    def disegnaGalvanometro(self, larghezza):
         LARGHEZZA_GALVANOMETRO = 180
         ALTEZZA_GALVANOMETRO = 150
         RAGGIO = 113
@@ -46,28 +73,46 @@ class GestoreCanvas:
         YCENTRO = 146
         #RAD_INIZIO = 0.66 + PI
         RAD_INIZIO = PI*(3/2)
-        self.img = tk.PhotoImage(file='galvanometroMK2.gif')
-        self.canvas.create_image(larghezza-(LARGHEZZA_GALVANOMETRO//2) - PADX, ALTEZZA_GALVANOMETRO//2 + PADY, image = self.img)
+        galvaID = self.canvas.create_image(larghezza-(LARGHEZZA_GALVANOMETRO//2) - PADX, ALTEZZA_GALVANOMETRO//2 + PADY, image = self.img_galvanometro)
         
         alfa = (RAD_INIZIO + ((0.91*self.corrente)/self.corrente_max))
 
         x = math.cos(alfa)*RAGGIO
         y = math.sin(alfa)*RAGGIO
         
-        self.canvas.create_line(XCENTRO, YCENTRO, XCENTRO+x, YCENTRO+y, fill='red', width=4)
+        agoID = self.canvas.create_line(XCENTRO, YCENTRO, XCENTRO+x, YCENTRO+y, fill='red', width=4)
+        return galvaID, agoID
 
+    def aggiornaGalvanometro(self, larghezza, galvaID, agoID):
+        LARGHEZZA_GALVANOMETRO = 180
+        ALTEZZA_GALVANOMETRO = 150
+        RAGGIO = 113
 
-    def disegnaPrimo(self):
-        self.canvas.delete('all')
-
-        x = random.randint(0, 400)
-        self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='grey')
+        PADX = 10
+        PADY = 10
         
-        self.disegnaGalvanometro()
-        if gestore_dialogo.esperimento == '1° Esperimento':
-            self.canvas.after(1000//self.fps, self.disegnaPrimo)
-        else: return 0
+        XCENTRO = larghezza-100
+        YCENTRO = 146
+        #RAD_INIZIO = 0.66 + PI
+        RAD_INIZIO = PI*(3/2)
+        self.canvas.coords(galvaID, (larghezza-(LARGHEZZA_GALVANOMETRO//2) - PADX, ALTEZZA_GALVANOMETRO//2 + PADY))
+        
+        alfa = (RAD_INIZIO + ((0.91*self.corrente)/self.corrente_max))
 
+        x = math.cos(alfa)*RAGGIO
+        y = math.sin(alfa)*RAGGIO
+        
+        self.canvas.coords(agoID, (XCENTRO, YCENTRO, XCENTRO+x, YCENTRO+y))
+
+
+    def interruttorePremuto(self):
+        if self.bottone_interruttore.aperto:
+            self.bottone_interruttore.aperto = 0
+            self.bottone_interruttore.config(image=self.img_interr_chiuso)
+        else:
+            self.bottone_interruttore.aperto = 1
+            self.bottone_interruttore.config(image=self.img_interr_aperto)
+    # =================================== SECONDO ===================================
     def disegnaSecondo(self):
         self.canvas.delete('all')
 
@@ -76,7 +121,7 @@ class GestoreCanvas:
         if gestore_dialogo.esperimento == '2° Esperimento':
             self.canvas.after(self.delta, self.disegnaSecondo)
         else: return 0
-
+    # =================================== TERZO ===================================
     def disegnaTerzo(self):
         self.canvas.delete('all')
 
@@ -85,7 +130,7 @@ class GestoreCanvas:
         if gestore_dialogo.esperimento == '3° Esperimento':
             self.canvas.after(self.delta, self.disegnaTerzo)
         else: return 0
-
+    # =================================== QUARTO ===================================
     def disegnaQuarto(self):
         self.canvas.delete('all')
 
@@ -94,7 +139,7 @@ class GestoreCanvas:
         if gestore_dialogo.esperimento == '4° Esperimento':
             self.canvas.after(self.delta, self.disegnaQuarto)
         else: return 0
-
+    # =================================== QUINTO ===================================
     def disegnaQuinto(self):
         self.canvas.delete('all')
 
@@ -113,6 +158,7 @@ class GestoreDialogo:
         self.diapositive : list[dict[str:str]]= self.config_dialogo[self.esperimento]
     
     def diapositivaSucc(self) -> None:
+        gestore_canvas.corrente += 10
         if self.index_diapositiva < len(self.diapositive)-1:
             self.index_diapositiva += 1
             self.aggiornaContoDiapositiva()
@@ -178,8 +224,7 @@ class GestoreDialogo:
             widget.grid(row = i, column = 0)
             i+=1
 
-def caricaRadice() -> tk.Tk:
-    radice = tk.Tk()
+def caricaRadice(radice) -> tk.Tk:
     radice.geometry('1100x700')
 
     # CONFIGURAZIONE RADICE
@@ -265,7 +310,8 @@ def caricaFrameNavigazione(root, global_root):
     contatore_diapositive.grid(row=0, column=1, sticky='nswe')
     bottone_dx.grid(row=0, column=2, sticky='nswe')
 
-gestore_canvas = GestoreCanvas()
+radice = tk.Tk()
 gestore_dialogo = GestoreDialogo()
-main = caricaRadice()
+gestore_canvas = GestoreCanvas()
+main = caricaRadice(radice)
 main.mainloop()
