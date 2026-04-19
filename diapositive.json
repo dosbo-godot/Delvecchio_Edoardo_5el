@@ -54,6 +54,7 @@
     "1° Esperimento": [
         {
             "S1": {
+                "variable": "corrente",
                 "from_": -100,
                 "to": 100,
                 "orient": "horizontal",

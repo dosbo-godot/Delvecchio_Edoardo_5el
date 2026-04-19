@@ -16,10 +16,10 @@ class GestoreCanvas:
         self.delta_potenziale = 0
         self.resistenza = 0
         self.corrente_potenziale = 0
-        self.corrente = 0
+        self.corrente = tk.DoubleVar(value=0)
         self.corrente_max = 100
         self.corrente_indotta = 0
-        self.fps = 10
+        self.fps = 30
         self.delta = 1000//self.fps
         # PARAMETRI 1°
         self.img_galvanometro = tk.PhotoImage(file='galvanometroMK2.gif')
@@ -55,34 +55,12 @@ class GestoreCanvas:
         self.canvas.coords(espID, (larghezza//2, altezza//2))
         self.canvas.coords(interruttoreID, (larghezza//2-145, altezza//2-167))
         self.aggiornaGalvanometro(larghezza, galvaID, agoID)
-        
+
         if gestore_dialogo.esperimento == '1° Esperimento':
             self.canvas.after(1000//self.fps, self.loopPrimo, espID, interruttoreID, galvaID, agoID)
         else: return 0
 
-    # 150x180
-    def disegnaGalvanometro(self, larghezza):
-        LARGHEZZA_GALVANOMETRO = 180
-        ALTEZZA_GALVANOMETRO = 150
-        RAGGIO = 113
-
-        PADX = 10
-        PADY = 10
-        
-        XCENTRO = larghezza-100
-        YCENTRO = 146
-        #RAD_INIZIO = 0.66 + PI
-        RAD_INIZIO = PI*(3/2)
-        galvaID = self.canvas.create_image(larghezza-(LARGHEZZA_GALVANOMETRO//2) - PADX, ALTEZZA_GALVANOMETRO//2 + PADY, image = self.img_galvanometro)
-        
-        alfa = (RAD_INIZIO + ((0.91*self.corrente)/self.corrente_max))
-
-        x = math.cos(alfa)*RAGGIO
-        y = math.sin(alfa)*RAGGIO
-        
-        agoID = self.canvas.create_line(XCENTRO, YCENTRO, XCENTRO+x, YCENTRO+y, fill='red', width=4)
-        return galvaID, agoID
-
+    # 180x150
     def aggiornaGalvanometro(self, larghezza, galvaID, agoID):
         LARGHEZZA_GALVANOMETRO = 180
         ALTEZZA_GALVANOMETRO = 150
@@ -97,7 +75,7 @@ class GestoreCanvas:
         RAD_INIZIO = PI*(3/2)
         self.canvas.coords(galvaID, (larghezza-(LARGHEZZA_GALVANOMETRO//2) - PADX, ALTEZZA_GALVANOMETRO//2 + PADY))
         
-        alfa = (RAD_INIZIO + ((0.91*self.corrente)/self.corrente_max))
+        alfa = (RAD_INIZIO + ((0.91*self.corrente.get())/self.corrente_max))
 
         x = math.cos(alfa)*RAGGIO
         y = math.sin(alfa)*RAGGIO
@@ -158,7 +136,6 @@ class GestoreDialogo:
         self.diapositive : list[dict[str:str]]= self.config_dialogo[self.esperimento]
     
     def diapositivaSucc(self) -> None:
-        gestore_canvas.corrente += 10
         if self.index_diapositiva < len(self.diapositive)-1:
             self.index_diapositiva += 1
             self.aggiornaContoDiapositiva()
@@ -216,7 +193,9 @@ class GestoreDialogo:
             if tipo_widget[0] == 'L':
                 widget = tk.Label(root, wraplength=LARGHEZZA_LATERALE-30, bg=GREY, **configurazione)
             elif tipo_widget[0] == 'S':
-                widget = tk.Scale(root, bg=GREY, **configurazione)
+                var : tk.DoubleVar = getattr(gestore_canvas, configurazione['variable'])
+                del configurazione['variable']
+                widget = tk.Scale(root, bg=GREY, variable=var,**configurazione)
             elif tipo_widget[0] == 'B':
                 widget = tk.Button(root, bg=GREY, **configurazione)
             elif tipo_widget[0] == 'F':
@@ -311,7 +290,7 @@ def caricaFrameNavigazione(root, global_root):
     bottone_dx.grid(row=0, column=2, sticky='nswe')
 
 radice = tk.Tk()
-gestore_dialogo = GestoreDialogo()
 gestore_canvas = GestoreCanvas()
+gestore_dialogo = GestoreDialogo()
 main = caricaRadice(radice)
 main.mainloop()
