@@ -13,14 +13,16 @@ class GestoreCanvas:
         self.canvas : tk.Canvas = None
 
         # PARAMETRI GENERICI
-        self.delta_potenziale = 0
-        self.resistenza = 0
+        self.tempo = 0
+        self.fem = tk.DoubleVar(value=10)
+        self.resistenza = 0.1
         self.corrente_potenziale = 0
         self.corrente = tk.DoubleVar(value=0)
-        self.corrente_max = 100
+        self.corrente_max = self.fem.get() / self.resistenza
         self.corrente_indotta = 0
         self.fps = 30
         self.delta = 1000//self.fps
+        self.induttanza = 0.5
         # PARAMETRI 1°
         self.img_galvanometro = tk.PhotoImage(file='galvanometroMK2.gif')
         self.img_esperimento1 = tk.PhotoImage(file='esperimento1.gif')
@@ -56,9 +58,12 @@ class GestoreCanvas:
         self.canvas.coords(interruttoreID, (larghezza//2-145, altezza//2-167))
         self.aggiornaGalvanometro(larghezza, galvaID, agoID)
 
+        self.calcoliFisici1()
+
         if gestore_dialogo.esperimento == '1° Esperimento':
-            self.canvas.after(1000//self.fps, self.loopPrimo, espID, interruttoreID, galvaID, agoID)
+            self.canvas.after(self.delta, self.loopPrimo, espID, interruttoreID, galvaID, agoID)
         else: return 0
+        self.tempo += (self.delta * 0.001)
 
     # 180x150
     def aggiornaGalvanometro(self, larghezza, galvaID, agoID):
@@ -71,11 +76,14 @@ class GestoreCanvas:
         
         XCENTRO = larghezza-100
         YCENTRO = 146
-        #RAD_INIZIO = 0.66 + PI
-        RAD_INIZIO = PI*(3/2)
+        RAD_META = PI*(3/2)
+        RAD_MAX =  5.62225
+        RAD_MIN = 3.8025
         self.canvas.coords(galvaID, (larghezza-(LARGHEZZA_GALVANOMETRO//2) - PADX, ALTEZZA_GALVANOMETRO//2 + PADY))
         
-        alfa = (RAD_INIZIO + ((0.91*self.corrente.get())/self.corrente_max))
+        alfa = RAD_META + self.corrente.get()*1.81973
+        if alfa > RAD_MAX : alfa = RAD_MAX
+        elif alfa < RAD_MIN : alfa = RAD_MIN
 
         x = math.cos(alfa)*RAGGIO
         y = math.sin(alfa)*RAGGIO
@@ -84,12 +92,21 @@ class GestoreCanvas:
 
 
     def interruttorePremuto(self):
+        self.tempo = 0
         if self.bottone_interruttore.aperto:
             self.bottone_interruttore.aperto = 0
             self.bottone_interruttore.config(image=self.img_interr_chiuso)
         else:
             self.bottone_interruttore.aperto = 1
             self.bottone_interruttore.config(image=self.img_interr_aperto)
+    
+    def calcoliFisici1(self):
+        if self.bottone_interruttore.aperto:
+            i = (self.fem.get()/self.resistenza)*(2.71828**(-self.tempo/self.resistenza))
+        else:
+            i = (self.fem.get()/self.resistenza)*(1-2.71828**(-self.tempo/self.resistenza))
+        self.corrente.set(i)
+
     # =================================== SECONDO ===================================
     def disegnaSecondo(self):
         self.canvas.delete('all')
