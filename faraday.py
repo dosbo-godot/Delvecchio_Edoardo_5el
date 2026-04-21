@@ -7,6 +7,7 @@ import math
 GREY = '#e8e8e8'
 LARGHEZZA_LATERALE = 300
 PI = 3.1415
+E = 2.71828
 
 class GestoreCanvas:
     def __init__(self):
@@ -102,9 +103,9 @@ class GestoreCanvas:
     
     def calcoliFisici1(self):
         if self.bottone_interruttore.aperto:
-            i = (self.fem.get()/self.resistenza)*(2.71828**(-self.tempo/self.resistenza))
+            i = (self.fem.get()/self.resistenza)*(E**(-self.tempo/self.resistenza))
         else:
-            i = (self.fem.get()/self.resistenza)*(1-2.71828**(-self.tempo/self.resistenza))
+            i = (self.fem.get()/self.resistenza)*(1-E**(-self.tempo/self.resistenza))
         self.corrente.set(i)
 
     # =================================== SECONDO ===================================
@@ -207,6 +208,7 @@ class GestoreDialogo:
         i = 0
         for tipo_widget, configurazione in widgets.items():
             widget = None
+            widget_figlio = None
             if tipo_widget[0] == 'L':
                 widget = tk.Label(root, wraplength=LARGHEZZA_LATERALE-30, bg=GREY, **configurazione)
             elif tipo_widget[0] == 'S':
@@ -216,7 +218,15 @@ class GestoreDialogo:
             elif tipo_widget[0] == 'B':
                 widget = tk.Button(root, bg=GREY, **configurazione)
             elif tipo_widget[0] == 'F':
-                widget = tk.Frame(root, **configurazione)
+                widget = tk.Frame(root)
+                for tipo_widget_figlio, config_figlia in configurazione.items():
+                    if tipo_widget_figlio[0] == 'L':widget_figlio = tk.Label(widget, **config_figlia)
+                    elif tipo_widget_figlio[0] == 'S':
+                        var : tk.DoubleVar = getattr(gestore_canvas, configurazione['variable'])
+                        del configurazione['variable']
+                        widget_figlio = tk.Scale(widget, **config_figlia)
+                    elif tipo_widget_figlio[0] == 'B': widget_figlio = tk.Button(widget, **config_figlia)
+                    widget_figlio.pack(side = tk.LEFT)
             widget.grid(row = i, column = 0)
             i+=1
 
@@ -311,3 +321,4 @@ gestore_canvas = GestoreCanvas()
 gestore_dialogo = GestoreDialogo()
 main = caricaRadice(radice)
 main.mainloop()
+
