@@ -53,13 +53,19 @@
     ],
     "1° Esperimento": [
         {
-            "S1": {
-                "variable": "fem",
-                "from_": 0,
-                "to": 0.5,
-                "orient": "horizontal",
-                "length": 150,
-                "resolution": 0.01
+            "F1":{
+                "L1" :{
+                    "text" : "fem = ",
+                    "font": "Arial 12 bold"
+                },
+                "S1": {
+                    "variable": "fem",
+                    "from_": 0,
+                    "to": 0.5,
+                    "orient": "horizontal",
+                    "length": 150,
+                    "resolution": 0.01
+                }
             }
         }
     ],
