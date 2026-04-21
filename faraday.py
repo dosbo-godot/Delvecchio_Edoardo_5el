@@ -199,16 +199,16 @@ class GestoreDialogo:
     def aggiornaContoDiapositiva(self):
         self.labelDiapositiva.set(f'{self.index_diapositiva+1}/{len(self.diapositive)}')
     
-    def caricaContenuto(self, root : tk.Frame):
+    def caricaContenuto(self, root : tk.Frame, id = None):
         self.root = root
         widgets = self.diapositive[self.index_diapositiva]
+        if id: widgets = self.diapositive[self.index_diapositiva][id]
         root.columnconfigure(0, weight=1)
         for i in range(len(widgets)):
             root.rowconfigure(i, weight=1)
         i = 0
         for tipo_widget, configurazione in widgets.items():
             widget = None
-            widget_figlio = None
             if tipo_widget[0] == 'L':
                 widget = tk.Label(root, wraplength=LARGHEZZA_LATERALE-30, bg=GREY, **configurazione)
             elif tipo_widget[0] == 'S':
@@ -219,15 +219,11 @@ class GestoreDialogo:
                 widget = tk.Button(root, bg=GREY, **configurazione)
             elif tipo_widget[0] == 'F':
                 widget = tk.Frame(root)
-                for tipo_widget_figlio, config_figlia in configurazione.items():
-                    if tipo_widget_figlio[0] == 'L':widget_figlio = tk.Label(widget, **config_figlia)
-                    elif tipo_widget_figlio[0] == 'S':
-                        var : tk.DoubleVar = getattr(gestore_canvas, configurazione['variable'])
-                        del configurazione['variable']
-                        widget_figlio = tk.Scale(widget, **config_figlia)
-                    elif tipo_widget_figlio[0] == 'B': widget_figlio = tk.Button(widget, **config_figlia)
-                    widget_figlio.pack(side = tk.LEFT)
-            widget.grid(row = i, column = 0)
+                self.caricaContenuto(widget, tipo_widget)
+            if not id:
+                widget.grid(row = i, column = 0)
+            else:
+                widget.pack(side = tk.LEFT)
             i+=1
 
 def caricaRadice(radice) -> tk.Tk:
