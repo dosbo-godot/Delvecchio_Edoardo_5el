@@ -20,7 +20,7 @@ class GestoreCanvas:
 
         # PARAMETRI GENERICI
         self.tempo = 0
-        self.fem = tk.DoubleVar(value=10)
+        self.fem = tk.DoubleVar(value=0.7)
         self.resistenza = 0.1
         self.corrente_potenziale = 0
         self.corrente = tk.DoubleVar(value=0)
@@ -33,6 +33,7 @@ class GestoreCanvas:
         self.img_esperimento1 = tk.PhotoImage(file='esperimento1.gif')
         self.img_interr_aperto = tk.PhotoImage(file='interruttoreAperto.gif')
         self.img_interr_chiuso = tk.PhotoImage(file='interruttoreChiuso.gif')
+        self.img_formula_flusso = tk.PhotoImage(file='formulaFlusso.gif')
 
         self.resistenza_solenoide = 1 # ohm
         self.N_spire_solenoide = 70
@@ -207,6 +208,7 @@ class GestoreDialogo:
             gestore_canvas.disegnaQuinto()
 
     def svuotaRoot(self, root : tk.Frame):
+        pass
         for widget in root.winfo_children():
             widget.destroy()
     
@@ -217,7 +219,7 @@ class GestoreDialogo:
         self.labelDiapositiva.set(f'{self.index_diapositiva+1}/{len(self.diapositive)}')
     
     def caricaContenuto(self, root : tk.Frame, id = None):
-        self.root = root
+        if not id: self.root = root
         widgets = self.diapositive[self.index_diapositiva]
         if id: widgets = self.diapositive[self.index_diapositiva][id]
         root.columnconfigure(0, weight=1)
@@ -229,14 +231,20 @@ class GestoreDialogo:
             if tipo_widget[0] == 'L':
                 widget = tk.Label(root, wraplength=LARGHEZZA_LATERALE-30, bg=GREY, **configurazione)
             elif tipo_widget[0] == 'S':
-                var : tk.DoubleVar = getattr(gestore_canvas, configurazione['variable'])
-                del configurazione['variable']
-                widget = tk.Scale(root, bg=GREY, variable=var,**configurazione)
+                if 'variable' in list(configurazione.keys()):
+                    var : tk.DoubleVar = getattr(gestore_canvas, configurazione['variable'])
+                    del configurazione['variable']
+                    widget = tk.Scale(root, bg=GREY, variable=var,**configurazione)
+                else:
+                    widget = tk.Scale(root, bg=GREY, **configurazione)
             elif tipo_widget[0] == 'B':
                 widget = tk.Button(root, bg=GREY, **configurazione)
             elif tipo_widget[0] == 'F':
                 widget = tk.Frame(root, bg=GREY)
                 self.caricaContenuto(widget, tipo_widget)
+            elif tipo_widget[0] == 'I':
+                img = getattr(gestore_canvas, configurazione['nome'])
+                widget = tk.Label(root, image=img)
             if not id:
                 widget.grid(row = i, column = 0)
             else:

@@ -31,28 +31,26 @@
                 "text": "1° Esperimento",
                 "font": "Arial 16 bold"
             }
-        },
-        {
-            "L1": {
-                "text": "Per",
-                "font": "Arial 14 bold"
-            },
-            "B2": {
-                "text": "Nel 1831, Michael Faraday condusse una serie di esperimenti per verificare se il magnetismo potesse generare elettricità. Attraverso prove con magneti e bobine di filo conduttore, dimostrò che il movimento di un campo magnetico produce una corrente elettrica in un circuito vicino.\nQuesti test portarono alla formulazione del principio di induzione elettromagnetica, basato sull'idea che una variazione nel tempo del flusso magnetico genera una forza elettromotrice. Da queste osservazioni derivarono in seguito lo sviluppo dei primi generatori e trasformatori elettrici.\nQuesto programma visualizza i 5 esperimenti in modo interattivo."
-            },
-            "S3": {
-                "from_": 0,
-                "to": 100,
-                "orient": "horizontal",
-                "length": 100
-            },
-            "F4": {
-                "bg": "green"
-            }
         }
     ],
     "1° Esperimento": [
         {
+            "L1": {
+                "text": "1° Esperimento - Struttura dell'esperimento",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il primo esperimento di Faraday mostra un fatto sorprendente: una corrente può nascere in un circuito anche senza collegarlo direttamente a una pila. Qui osservi due circuiti distinti, uno “attivo” con interruttore e batteria, e uno “passivo” collegato solo a un galvanometro.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Nel disegno hai davanti due bobine vicine. La prima è collegata alla pila e controllata dall'interruttore. La seconda è isolata dalla pila, ma collegata al galvanometro. Non c'è alcun filo che unisce direttamente i due circuiti.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "L'interruttore è l'elemento chiave. Quando lo chiudi o lo apri, modifichi improvvisamente la corrente nel circuito principale. Questa variazione è ciò che genera l'effetto osservabile nel secondo circuito.",
+                "font": "Arial 11"
+            },
             "F1": {
                 "L1": {
                     "text": "fem (Volt) = ",
@@ -67,15 +65,56 @@
                     "resolution": 0.1
                 }
             }
-        }
-    ],
-    "2° Esperimento": [
+        },
         {
             "L1": {
-                "text": "Benvenuto nel 2° Esperimento... Lavori in corso ..."
+                "text": "1° Esperimento - Osservazione del fenomeno",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il galvanometro a schermo non misura una corrente continua costante, ma segnala solo brevi impulsi. L'ago si muove per un istante e poi torna al centro. Chiudendo l'interruttore, la corrente nel primo circuito cresce rapidamente. In questo momento il galvanometro nel secondo circuito mostra una deviazione improvvisa in una direzione.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Clicca l'interruttore situato sul primo circuito per osservare il fenomeno",
+                "font": "Arial 11 bold"
+            },
+            "L4": {
+                "text": "Dopo l'impulso iniziale, anche se la corrente nel primo circuito continua a scorrere, il galvanometro torna a zero. Questo indica che non è la corrente in sé a generare l'effetto, ma la sua variazione.",
+                "font": "Arial 11"
+            },
+            "L5": {
+                "text": "Aprendo l'interruttore, la corrente nel circuito principale crolla. Il galvanometro reagisce di nuovo, ma stavolta l'ago si muove nella direzione opposta.",
+                "font": "Arial 11"
+            },
+            "L6": {
+                "text": "Clicca nuovamente l'interruttore",
+                "font": "Arial 11 bold"
+            }
+        },
+        {
+            "L1": {
+                "text": "1° Esperimento - Interpretazione fisica",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Le due deviazioni opposte mostrano che il fenomeno dipende dal modo in cui la corrente cambia: aumento e diminuzione producono effetti opposti.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": " La corrente nel primo circuito genera un campo magnetico attorno alla bobina. Quando la corrente cambia, cambia anche questo campo.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": " Non è il campo magnetico statico a produrre corrente nel secondo circuito, ma la sua variazione nel tempo. La variazione del campo provoca a sau volta la variazione del flusso di campo magnetico, seguendo la formula:",
+                "font": "Arial 11"
+            },
+            "I1": {
+                "nome": "img_formula_flusso"
             }
         }
     ],
+    "2° Esperimento": [],
     "3° Esperimento": [
         {
             "L1": {
