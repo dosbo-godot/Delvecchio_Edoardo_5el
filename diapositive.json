@@ -53,18 +53,18 @@
     ],
     "1° Esperimento": [
         {
-            "F1":{
-                "L1" :{
-                    "text" : "fem = ",
+            "F1": {
+                "L1": {
+                    "text": "fem (Volt) = ",
                     "font": "Arial 12 bold"
                 },
                 "S1": {
                     "variable": "fem",
                     "from_": 0,
-                    "to": 0.5,
+                    "to": 1.5,
                     "orient": "horizontal",
                     "length": 150,
-                    "resolution": 0.01
+                    "resolution": 0.1
                 }
             }
         }

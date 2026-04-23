@@ -8,10 +8,15 @@ GREY = '#e8e8e8'
 LARGHEZZA_LATERALE = 300
 PI = 3.1415
 E = 2.71828
+MU0 = 4*3.1415*(10**-7)
 
 class GestoreCanvas:
     def __init__(self):
         self.canvas : tk.Canvas = None
+        self.fps = 30
+        self.intervallo = 1000//self.fps
+        self.mult_tempo = tk.DoubleVar(value=1)
+        self.delta = self.intervallo*self.mult_tempo.get()
 
         # PARAMETRI GENERICI
         self.tempo = 0
@@ -21,14 +26,19 @@ class GestoreCanvas:
         self.corrente = tk.DoubleVar(value=0)
         self.corrente_max = self.fem.get() / self.resistenza
         self.corrente_indotta = 0
-        self.fps = 30
-        self.delta = 1000//self.fps
         self.induttanza = 0.5
+        self.campo_magnetico = 0
         # PARAMETRI 1°
         self.img_galvanometro = tk.PhotoImage(file='galvanometroMK2.gif')
         self.img_esperimento1 = tk.PhotoImage(file='esperimento1.gif')
         self.img_interr_aperto = tk.PhotoImage(file='interruttoreAperto.gif')
         self.img_interr_chiuso = tk.PhotoImage(file='interruttoreChiuso.gif')
+
+        self.resistenza_solenoide = 1 # ohm
+        self.N_spire_solenoide = 70
+        self.L_solenoide = 0.45 #m
+        self.raggio_solenoide = 0.01 #m
+        self.area_solenoide = self.raggio_solenoide*(PI**2)
         # PARAMETRI 2°
         # PARAMETRI 3°
         # PARAMETRI 4°
@@ -51,20 +61,22 @@ class GestoreCanvas:
         self.loopPrimo(esp, interruttore, galva, ago)
 
     def loopPrimo(self, espID, interruttoreID, galvaID, agoID):
-        larghezza = self.canvas.winfo_width()
-        altezza = self.canvas.winfo_height()
+        self.delta = self.intervallo*self.mult_tempo.get()
+        if self.delta != 0.0:
+            larghezza = self.canvas.winfo_width()
+            altezza = self.canvas.winfo_height()
 
-        # aggiornamento oggetti grafici
-        self.canvas.coords(espID, (larghezza//2, altezza//2))
-        self.canvas.coords(interruttoreID, (larghezza//2-145, altezza//2-167))
-        self.aggiornaGalvanometro(larghezza, galvaID, agoID)
+            # aggiornamento oggetti grafici
+            self.canvas.coords(espID, (larghezza//2, altezza//2))
+            self.canvas.coords(interruttoreID, (larghezza//2-145, altezza//2-167))
+            self.aggiornaGalvanometro(larghezza, galvaID, agoID)
 
-        self.calcoliFisici1()
+            self.calcoliFisici1()
 
         if gestore_dialogo.esperimento == '1° Esperimento':
-            self.canvas.after(self.delta, self.loopPrimo, espID, interruttoreID, galvaID, agoID)
+            self.canvas.after(self.intervallo, self.loopPrimo, espID, interruttoreID, galvaID, agoID)
         else: return 0
-        self.tempo += (self.delta * 0.001)
+        self.tempo += (self.delta)
 
     # 180x150
     def aggiornaGalvanometro(self, larghezza, galvaID, agoID):
@@ -82,7 +94,8 @@ class GestoreCanvas:
         RAD_MIN = 3.8025
         self.canvas.coords(galvaID, (larghezza-(LARGHEZZA_GALVANOMETRO//2) - PADX, ALTEZZA_GALVANOMETRO//2 + PADY))
         
-        alfa = RAD_META + self.corrente.get()*1.81973
+        k = (RAD_MAX - RAD_MIN) / (6 * 1e-6)
+        alfa = RAD_META + self.corrente_indotta * k
         if alfa > RAD_MAX : alfa = RAD_MAX
         elif alfa < RAD_MIN : alfa = RAD_MIN
 
@@ -103,10 +116,14 @@ class GestoreCanvas:
     
     def calcoliFisici1(self):
         if self.bottone_interruttore.aperto:
-            i = (self.fem.get()/self.resistenza)*(E**(-self.tempo/self.resistenza))
+            i1 = (self.fem.get()/self.resistenza)*(E**(-self.tempo*self.resistenza/self.induttanza))
         else:
-            i = (self.fem.get()/self.resistenza)*(1-E**(-self.tempo/self.resistenza))
-        self.corrente.set(i)
+            i1 = (self.fem.get()/self.resistenza)*(1-E**(-self.tempo*self.resistenza/self.induttanza))
+        b = (MU0*i1*self.N_spire_solenoide)/self.L_solenoide
+        delta_flusso_b = -(self.N_spire_solenoide*self.area_solenoide*(self.campo_magnetico-b))
+        self.corrente_indotta = delta_flusso_b/(self.resistenza_solenoide*self.delta)
+        self.campo_magnetico = b
+        self.corrente.set(i1)
 
     # =================================== SECONDO ===================================
     def disegnaSecondo(self):
@@ -115,7 +132,7 @@ class GestoreCanvas:
         x = random.randint(0, 400)
         self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='yellow')
         if gestore_dialogo.esperimento == '2° Esperimento':
-            self.canvas.after(self.delta, self.disegnaSecondo)
+            self.canvas.after(self.intervallo, self.disegnaSecondo)
         else: return 0
     # =================================== TERZO ===================================
     def disegnaTerzo(self):
@@ -124,7 +141,7 @@ class GestoreCanvas:
         x = random.randint(0, 400)
         self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='blue')
         if gestore_dialogo.esperimento == '3° Esperimento':
-            self.canvas.after(self.delta, self.disegnaTerzo)
+            self.canvas.after(self.intervallo, self.disegnaTerzo)
         else: return 0
     # =================================== QUARTO ===================================
     def disegnaQuarto(self):
@@ -133,7 +150,7 @@ class GestoreCanvas:
         x = random.randint(0, 400)
         self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='black')
         if gestore_dialogo.esperimento == '4° Esperimento':
-            self.canvas.after(self.delta, self.disegnaQuarto)
+            self.canvas.after(self.intervallo, self.disegnaQuarto)
         else: return 0
     # =================================== QUINTO ===================================
     def disegnaQuinto(self):
@@ -142,7 +159,7 @@ class GestoreCanvas:
         x = random.randint(0, 400)
         self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='green')
         if gestore_dialogo.esperimento == '5° Esperimento':
-            self.canvas.after(self.delta, self.disegnaQuinto)
+            self.canvas.after(self.intervallo, self.disegnaQuinto)
         else: return 0
 
 class GestoreDialogo:
@@ -218,7 +235,7 @@ class GestoreDialogo:
             elif tipo_widget[0] == 'B':
                 widget = tk.Button(root, bg=GREY, **configurazione)
             elif tipo_widget[0] == 'F':
-                widget = tk.Frame(root)
+                widget = tk.Frame(root, bg=GREY)
                 self.caricaContenuto(widget, tipo_widget)
             if not id:
                 widget.grid(row = i, column = 0)
@@ -227,7 +244,7 @@ class GestoreDialogo:
             i+=1
 
 def caricaRadice(radice) -> tk.Tk:
-    radice.geometry('1100x700')
+    radice.geometry('1100x710')
 
     # CONFIGURAZIONE RADICE
     radice.columnconfigure(0, weight=1) 
@@ -243,13 +260,23 @@ def caricaFrameSuperiore(root, global_root : tk.Tk):
     frame_superiore = tk.Frame(root, bg=GREY)
     # CONFIGURAZIONE FRAME SUP
     frame_superiore.rowconfigure(0, weight=1)
+    frame_superiore.columnconfigure(0, weight=1)
+    frame_superiore.columnconfigure(1, weight=1)
     frame_superiore.grid(row=0, column=0, sticky='nsew')
 
     scelta  = tk.StringVar(root)
     scelta.set(gestore_dialogo.esperimento)
     opzioni = [f'{x}° Esperimento' for x in range(1,5)]
     menu = tk.OptionMenu(frame_superiore, scelta, *opzioni, command=gestore_dialogo.cambioEsperimento)
-    menu.grid(row=0, column=0)
+
+    frame_tempo = tk.Frame(frame_superiore, bg=GREY)
+    label_tempo = tk.Label(frame_tempo, text=f'Velocità tempo (Nx): ', bg=GREY)
+    scale_tempo = tk.Scale(frame_tempo, variable=gestore_canvas.mult_tempo, from_=0, to=1, orient='horizontal', resolution=0.01, bg=GREY, length=180)
+    label_tempo.grid(row=0, column=1)
+    scale_tempo.grid(row=0, column=2)
+
+    menu.grid(row=0, column=0, stick='w')
+    frame_tempo.grid(row=0, column=1, stick='e')
 
 def caricaFrameInferiore(root, global_root):
     frame_inferiore = tk.Frame(root, bg=GREY)
