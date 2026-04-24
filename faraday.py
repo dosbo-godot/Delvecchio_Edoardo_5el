@@ -353,3 +353,4 @@ gestore_dialogo = GestoreDialogo()
 main = caricaRadice(radice)
 main.mainloop()
 
+
