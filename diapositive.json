@@ -50,20 +50,6 @@
             "L4": {
                 "text": "L'interruttore è l'elemento chiave. Quando lo chiudi o lo apri, modifichi improvvisamente la corrente nel circuito principale. Questa variazione è ciò che genera l'effetto osservabile nel secondo circuito.",
                 "font": "Arial 11"
-            },
-            "F1": {
-                "L1": {
-                    "text": "fem (Volt) = ",
-                    "font": "Arial 12 bold"
-                },
-                "S1": {
-                    "variable": "fem",
-                    "from_": 0,
-                    "to": 1.5,
-                    "orient": "horizontal",
-                    "length": 150,
-                    "resolution": 0.1
-                }
             }
         },
         {
@@ -111,6 +97,63 @@
             },
             "I1": {
                 "nome": "img_formula_flusso"
+            }
+        },
+        {
+            "L1": {
+                "text": "1° Esperimento - Ruolo della simulazione",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il fenomeno avviene molto rapidamente. Il controllo del tempo nella simulazione ti permette di rallentare l’evoluzione e osservare chiaramente il movimento dell’ago. Aumentando il fattore di rallentamento, vedrai l’ago muoversi più lentamente, ma seguendo lo stesso comportamento. A cambiare non è la fisica che c'è dietro ma il tempo nel quale opera.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Puoi modificare il rallentamento dal menu in alto a destra",
+                "font": "Arial 11 bold"
+            },
+            "L4": {
+                "text": "Modificando la forza elettromotrice della pila, cambi l’intensità della corrente nel circuito principale. Questo influenza l’ampiezza della deviazione del galvanometro, anche se non dovrebbe essere particolarmente percettibile, dal momento che misura in microAmpere, unità di misura particolarmente piccola, utilizzata per rendere più appariscente l'oscillazione dell'ago.",
+                "font": "Arial 11"
+            },
+            "F1": {
+                "L1": {
+                    "text": "fem (Volt) = ",
+                    "font": "Arial 12 bold"
+                },
+                "S1": {
+                    "variable": "fem",
+                    "from_": 0,
+                    "to": 1.5,
+                    "orient": "horizontal",
+                    "length": 150,
+                    "resolution": 0.1
+                }
+            },
+            "L5":{
+                "variable" : "corrente"
+            }
+        },
+        {
+            "L1": {
+                "text": "1° Esperimento - Conclusione",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "È importante notare che non esiste un collegamento elettrico tra i due circuiti. L’interazione avviene attraverso il campo magnetico che viene trasferito al secondo circuito tramite l'anello di ferro.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Questo risultato dimostra che elettricità e magnetismo sono legati tra loro, anche senza contatto diretto tra circuiti.",
+                "font": "Arial 11 bold"
+            },
+            "L4": {
+                "text": "Interagendo con l'interruttore, tempo e FEM, puoi verificare direttamente che serve una variazione, che il verso dipende dal tipo di variazione e che l’intensità dipende dalla rapidità e dall’ampiezza.",
+                "font": "Arial 11"
+            },
+            "L5": {
+                "text": " Il primo esperimento di Faraday introduce quindi un principio importante: una corrente può essere generata non da una pila, ma da un cambiamento nel campo magnetico prodotto da un altro circuito.",
+                "font": "Arial 11"
             }
         }
     ],
