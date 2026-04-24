@@ -129,9 +129,6 @@
                     "length": 150,
                     "resolution": 0.1
                 }
-            },
-            "L5":{
-                "variable" : "corrente"
             }
         },
         {
@@ -157,25 +154,451 @@
             }
         }
     ],
-    "2° Esperimento": [],
+    "2° Esperimento": [
+        {
+            "L1": {
+                "text": "2° Esperimento - Struttura del secondo esperimento",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Nel secondo esperimento, Faraday modifica la configurazione utilizzando sempre due circuiti, ma cambia il modo in cui essi interagiscono. Le due bobine non sono più semplicemente vicine: una può essere inserita o rimossa dall’altra, oppure avvicinata e allontanata.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Il circuito primario resta collegato alla pila, mentre il secondario è connesso al galvanometro. Anche qui non esiste un collegamento elettrico diretto tra i due.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "L’elemento nuovo è il movimento relativo tra le bobine, che diventa il fattore determinante per osservare il fenomeno.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "2° Esperimento - Osservazione del galvanometro",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Quando le due bobine sono ferme, anche se nel circuito primario scorre corrente, il galvanometro non mostra alcuna deviazione.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Avvicinando una bobina all’altra, l’ago del galvanometro si sposta per un breve istante. Questo indica la presenza di una corrente indotta nel circuito secondario.",
+                "font": "Arial 11 bold"
+            },
+            "L4": {
+                "text": "Se invece si allontanano le bobine, si osserva una nuova deviazione, ma in direzione opposta. Ancora una volta, l’effetto è temporaneo: appena il movimento si arresta, l’ago torna a zero.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "2° Esperimento - Interpretazione del fenomeno",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il comportamento osservato mostra che non è sufficiente la presenza di un campo magnetico per generare corrente. Anche in questo caso è fondamentale una variazione.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Muovendo le bobine, cambia il campo magnetico che attraversa il circuito secondario. Questa variazione è ciò che induce la corrente.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Il verso della corrente dipende dal tipo di variazione: avvicinamento e allontanamento producono effetti opposti.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "2° Esperimento - Ruolo del movimento",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il movimento relativo tra le bobine sostituisce, in questo esperimento, il ruolo dell’interruttore visto nel primo caso.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Più rapidamente avviene il movimento, più intensa sarà la variazione del campo magnetico e quindi maggiore sarà la deviazione del galvanometro.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Un movimento lento produce invece un effetto più debole, ma comunque osservabile. Se il movimento si ferma, anche l’effetto scompare immediatamente.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "2° Esperimento - Analogia con il primo esperimento",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Nel primo esperimento la variazione era prodotta accendendo o spegnendo la corrente. Qui invece è il movimento a generarla.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "In entrambi i casi, il risultato è lo stesso: una corrente indotta compare solo durante il cambiamento. Questo rafforza l’idea che la causa fondamentale non sia la corrente o il campo in sé, ma la loro variazione nel tempo.",
+                "font": "Arial 11 bold"
+            }
+        },
+        {
+            "L1": {
+                "text": "2° Esperimento - Conclusione",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il secondo esperimento mette in evidenza che l’induzione elettromagnetica può essere ottenuta anche senza modificare il circuito elettrico, ma semplicemente cambiando la posizione degli elementi.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Si comprende così che il fenomeno dipende dalla variazione del campo magnetico attraverso il circuito, indipendentemente da come questa variazione venga prodotta.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Osservando il galvanometro durante il movimento, si può verificare direttamente la relazione tra velocità, direzione del movimento e corrente indotta.",
+                "font": "Arial 11"
+            },
+            "L5": {
+                "text": "Questo esperimento amplia il risultato del primo, mostrando che esistono diversi modi per ottenere lo stesso effetto fisico fondamentale.",
+                "font": "Arial 11 bold"
+            }
+        }
+    ],
     "3° Esperimento": [
         {
             "L1": {
-                "text": "Benvenuto nel 3° Esperimento... Lavori in corso ..."
+                "text": "3° Esperimento - Struttura del secondo esperimento",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Nel terzo esperimento Faraday introduce un elemento nuovo: un magnete al posto del circuito primario.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Il sistema è quindi composto da una bobina collegata al galvanometro e da un magnete che può essere mosso manualmente.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "A differenza dei casi precedenti, non è presente alcuna pila. Questo rende l’esperimento ancora più significativo, perché la corrente osservata nasce senza alcuna sorgente elettrica tradizionale. L’interazione avviene esclusivamente tra il campo magnetico del magnete e il circuito della bobina.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "3° Esperimento - Osservazione del galvanometro",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Quando il magnete è fermo rispetto alla bobina, il galvanometro non mostra alcuna deviazione. Anche un magnete molto potente non produce effetti se resta immobile.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Inserendo il magnete nella bobina, l’ago del galvanometro devia rapidamente in una direzione. Estraendo il magnete, si osserva una deviazione opposta.",
+                "font": "Arial 11 bold"
+            },
+            "L4": {
+                "text": "Come negli esperimenti precedenti, l’effetto è temporaneo: l’ago torna sempre al centro quando il movimento termina.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "3° Esperimento - Interpretazione fisica",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il magnete genera un campo magnetico nello spazio circostante. Quando viene mosso rispetto alla bobina, il campo che attraversa il circuito cambia nel tempo.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "È proprio questa variazione a indurre una corrente nella bobina, rilevata dal galvanometro.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Il verso della corrente dipende dal tipo di movimento: ingresso e uscita del magnete producono effetti opposti.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "3° Esperimento - Ruolo del movimento",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il movimento del magnete è qui l’unica causa del fenomeno osservato. Non servono interruttori né variazioni di corrente in altri circuiti.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Più rapidamente il magnete viene inserito o estratto, più intensa sarà la deviazione dell’ago.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Un movimento lento produce una risposta più debole, ma comunque rilevabile. Se il magnete viene mantenuto fermo all’interno della bobina, l’effetto scompare completamente.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "3° Esperimento - Confronto con gli esperimenti precedenti",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Nel primo esperimento la variazione era prodotta accendendo o spegnendo una corrente. Nel secondo, muovendo due bobine. Qui, invece, è il magnete stesso a generare il campo variabile.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Nonostante le differenze, il risultato è sempre lo stesso: la corrente indotta compare solo durante una variazione del campo magnetico.",
+                "font": "Arial 11 bold"
+            },
+            "L4": {
+                "text": "Questo conferma che il fenomeno è generale e non dipende dal tipo specifico di sorgente del campo.",
+                "font": "Arial 11 bold"
+            }
+        },
+        {
+            "L1": {
+                "text": "3° Esperimento - Conclusione",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il terzo esperimento dimostra che il magnetismo può generare elettricità senza l’uso di circuiti alimentati. Si evidenzia così in modo diretto il legame tra movimento, campo magnetico e corrente indotta.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Osservando il galvanometro durante l’inserimento e l’estrazione del magnete, è possibile comprendere come direzione e velocità del movimento influenzino il fenomeno.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Questo rappresenta uno dei risultati più importanti di Faraday, alla base del funzionamento di generatori e dispositivi elettrici moderni.",
+                "font": "Arial 11"
             }
         }
     ],
     "4° Esperimento": [
         {
             "L1": {
-                "text": "Benvenuto nel 4° Esperimento... Lavori in corso ..."
+                "text": "4° Esperimento - Struttura del quarto esperimento",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Nel quarto esperimento Faraday mantiene la bobina collegata al galvanometro, ma introduce una configurazione diversa del campo magnetico. Invece di muovere un magnete dentro una singola bobina, si considera un sistema in cui il campo può variare pur senza spostare direttamente il circuito principale.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Il circuito osservato resta uno solo, collegato al galvanometro, mentre la sorgente del campo magnetico è esterna e può cambiare nel tempo.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Questo esperimento serve a isolare ancora meglio il ruolo della variazione del campo magnetico, indipendentemente dalla struttura dei circuiti precedenti",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "4° Esperimento - Osservazione del galvanometro",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Quando il campo magnetico che attraversa la bobina resta costante, il galvanometro non mostra alcuna deviazione.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Se invece il campo aumenta o diminuisce nel tempo, l’ago si sposta temporaneamente. Un aumento del campo produce una deviazione in un verso, mentre una diminuzione produce una deviazione opposta.",
+                "font": "Arial 11 bold"
+            },
+            "L4": {
+                "text": "Appena la variazione termina e il campo torna costante, l’ago ritorna al centro.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "4° Esperimento - Interpretazione del fenomeno",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Questo comportamento conferma che non è necessario muovere fisicamente la bobina o il magnete: ciò che conta è esclusivamente la variazione del campo magnetico nel tempo.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "La bobina “sente” il cambiamento del campo che la attraversa e reagisce generando una corrente indotta.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Il verso della corrente dipende dal modo in cui il campo varia, mantenendo la coerenza con quanto osservato negli esperimenti precedenti.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "4° Esperimento - Ruolo della variazione controllata",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "In questo esperimento, la variazione del campo può essere resa più graduale o più rapida. Questo permette di osservare come cambia la risposta del galvanometro.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Una variazione rapida produce una deviazione più intensa, mentre una variazione lenta genera un effetto più debole.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Se il campo cambia in modo continuo, l’ago può restare deviato per un intervallo più lungo, seguendo l’andamento della variazione.",
+                "font": "Arial 11"
+            },
+            "L5": {
+                "text": "Questo rende evidente il legame tra velocità di variazione e intensità della corrente indotta.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "4° Esperimento - Collegamento con gli altri esperimenti",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Rispetto ai primi tre esperimenti, qui viene eliminato ogni elemento non essenziale: non è necessario un secondo circuito, né un movimento visibile della bobina.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Si comprende che tutti i casi precedenti erano semplicemente modi diversi per ottenere una variazione del campo magnetico.",
+                "font": "Arial 11 bold"
+            },
+            "L4": {
+                "text": "Questo esperimento unifica i risultati precedenti in un’unica idea più generale.",
+                "font": "Arial 11 bold"
+            }
+        },
+        {
+            "L1": {
+                "text": "4° Esperimento - Conclusione",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il quarto esperimento chiarisce definitivamente che la corrente indotta nasce quando il campo magnetico che attraversa un circuito varia nel tempo.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Non importa come questa variazione venga prodotta: movimento, interruttori o cambiamenti esterni portano allo stesso risultato.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Osservando il galvanometro, si può collegare direttamente l’andamento del campo alla risposta del circuito.Questo passaggio rappresenta una formulazione più astratta e completa del fenomeno dell’induzione elettromagnetica.",
+                "font": "Arial 11"
             }
         }
     ],
     "5° Esperimento": [
         {
             "L1": {
-                "text": "Benvenuto nel 5° Esperimento... Lavori in corso ..."
+                "text": "5° Esperimento - Struttura del quinto esperimento",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Nel quinto esperimento Faraday porta alle estreme conseguenze le osservazioni precedenti, studiando cosa accade quando il circuito viene mosso direttamente all’interno di un campo magnetico. La bobina collegata al galvanometro non è più ferma: è il circuito stesso a muoversi.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Il campo magnetico può essere generato da un magnete o da un sistema equivalente, ma ora l’attenzione è sul moto del conduttore.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Questo rappresenta un cambiamento di prospettiva: non si modifica più la sorgente del campo, ma il circuito che lo attraversa.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "5° Esperimento - Osservazione del galvanometro",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Quando la bobina è ferma nel campo magnetico, il galvanometro non registra alcuna corrente.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Se la bobina viene spostata, ruotata o fatta entrare e uscire dalla regione di campo, l’ago devia temporaneamente.",
+                "font": "Arial 11 bold"
+            },
+            "L4": {
+                "text": "Il verso della deviazione dipende dalla direzione del movimento. Anche in questo caso, l’effetto scompare non appena il movimento si arresta.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "5° Esperimento - Interpretazione fisica",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Muovendo il circuito all’interno del campo magnetico, cambia la quantità di campo che attraversa la superficie della bobina.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Questa variazione nel tempo genera una corrente indotta, rilevata dal galvanometro.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Il fenomeno è quindi del tutto equivalente a quelli osservati negli esperimenti precedenti, anche se ottenuto in modo diverso.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "5° Esperimento - Ruolo del movimento del circuito",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il movimento del circuito diventa qui la causa diretta della variazione del campo magnetico “percepito” dalla bobina.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Movimenti più rapidi producono variazioni più intense e quindi correnti indotte più grandi. Movimenti più lenti generano effetti più deboli, ma comunque osservabili.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Se il circuito si muove in modo continuo, il galvanometro può mostrare una deviazione prolungata.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "5° Esperimento - Sintesi con gli altri esperimenti",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il primo esperimento utilizzava un interruttore, il secondo il movimento relativo tra bobine, il terzo il moto di un magnete, il quarto una variazione controllata del campo.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "In questo quinto caso, è il circuito stesso a muoversi. Tutti questi scenari producono lo stesso effetto: una corrente indotta legata a una variazione del campo magnetico nel tempo.",
+                "font": "Arial 11 bold"
+            },
+            "L4": {
+                "text": "Questo dimostra che il fenomeno è universale e indipendente dalla configurazione specifica.",
+                "font": "Arial 11 bold"
+            }
+        },
+        {
+            "L1": {
+                "text": "5° Esperimento - Conclusione",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il quinto esperimento completa il quadro dell’induzione elettromagnetica mostrando che anche il moto del conduttore è sufficiente a generare corrente.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Si arriva così a una visione unificata: ogni volta che il campo magnetico attraverso un circuito cambia nel tempo, si genera una corrente indotta.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Osservando il galvanometro durante il movimento, è possibile comprendere come direzione e velocità influenzino il fenomeno.",
+                "font": "Arial 11"
+            },
+            "L5": {
+                "text": "Questo principio è alla base di dispositivi fondamentali come i generatori elettrici, in cui il movimento viene trasformato in energia elettrica.",
+                "font": "Arial 11 bold"
             }
         }
     ]

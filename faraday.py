@@ -274,7 +274,7 @@ def caricaFrameSuperiore(root, global_root : tk.Tk):
 
     scelta  = tk.StringVar(root)
     scelta.set(gestore_dialogo.esperimento)
-    opzioni = [f'{x}° Esperimento' for x in range(1,5)]
+    opzioni = [f'{x}° Esperimento' for x in range(1,6)]
     menu = tk.OptionMenu(frame_superiore, scelta, *opzioni, command=gestore_dialogo.cambioEsperimento)
 
     frame_tempo = tk.Frame(frame_superiore, bg=GREY)
