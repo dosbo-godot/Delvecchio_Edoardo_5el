@@ -189,6 +189,14 @@
             "L4": {
                 "text": "Se invece si allontanano le bobine, si osserva una nuova deviazione, ma in direzione opposta. Ancora una volta, l’effetto è temporaneo: appena il movimento si arresta, l’ago torna a zero.",
                 "font": "Arial 11"
+            },
+            "B1": {
+                "funzione": "avviaMovimento",
+                "text": "AVVIA MOVIMENTO"
+            },
+            "B2": {
+                "funzione": "fermaMovimento",
+                "text": "FERMA MOVIMENTO"
             }
         },
         {
@@ -293,12 +301,20 @@
                 "font": "Arial 11"
             },
             "L3": {
-                "text": "Inserendo il magnete nella bobina, l’ago del galvanometro devia rapidamente in una direzione. Estraendo il magnete, si osserva una deviazione opposta.",
+                "text": "Avviciando il magnete alla bobina, l’ago del galvanometro devia rapidamente in una direzione. Allontanando il magnete, si osserva una deviazione opposta.",
                 "font": "Arial 11 bold"
             },
             "L4": {
                 "text": "Come negli esperimenti precedenti, l’effetto è temporaneo: l’ago torna sempre al centro quando il movimento termina.",
                 "font": "Arial 11"
+            },
+            "B1": {
+                "funzione": "avviaMovimento",
+                "text": "AVVIA MOVIMENTO"
+            },
+            "B2": {
+                "funzione": "fermaMovimento",
+                "text": "FERMA MOVIMENTO"
             }
         },
         {
@@ -307,7 +323,7 @@
                 "font": "Arial 14 bold"
             },
             "L2": {
-                "text": "Il magnete genera un campo magnetico nello spazio circostante. Quando viene mosso rispetto alla bobina, il campo che attraversa il circuito cambia nel tempo.",
+                "text": "Il magnete genera un campo magnetico nello spazio circostante. Quando viene mosso rispetto alla bobina (il contrario come avviene a schermo è equivalente), il campo che attraversa il circuito cambia nel tempo.",
                 "font": "Arial 11"
             },
             "L3": {
@@ -377,121 +393,7 @@
     "4° Esperimento": [
         {
             "L1": {
-                "text": "4° Esperimento - Struttura del quarto esperimento",
-                "font": "Arial 14 bold"
-            },
-            "L2": {
-                "text": "Nel quarto esperimento Faraday mantiene la bobina collegata al galvanometro, ma introduce una configurazione diversa del campo magnetico. Invece di muovere un magnete dentro una singola bobina, si considera un sistema in cui il campo può variare pur senza spostare direttamente il circuito principale.",
-                "font": "Arial 11"
-            },
-            "L3": {
-                "text": "Il circuito osservato resta uno solo, collegato al galvanometro, mentre la sorgente del campo magnetico è esterna e può cambiare nel tempo.",
-                "font": "Arial 11"
-            },
-            "L4": {
-                "text": "Questo esperimento serve a isolare ancora meglio il ruolo della variazione del campo magnetico, indipendentemente dalla struttura dei circuiti precedenti",
-                "font": "Arial 11"
-            }
-        },
-        {
-            "L1": {
-                "text": "4° Esperimento - Osservazione del galvanometro",
-                "font": "Arial 14 bold"
-            },
-            "L2": {
-                "text": "Quando il campo magnetico che attraversa la bobina resta costante, il galvanometro non mostra alcuna deviazione.",
-                "font": "Arial 11"
-            },
-            "L3": {
-                "text": "Se invece il campo aumenta o diminuisce nel tempo, l’ago si sposta temporaneamente. Un aumento del campo produce una deviazione in un verso, mentre una diminuzione produce una deviazione opposta.",
-                "font": "Arial 11 bold"
-            },
-            "L4": {
-                "text": "Appena la variazione termina e il campo torna costante, l’ago ritorna al centro.",
-                "font": "Arial 11"
-            }
-        },
-        {
-            "L1": {
-                "text": "4° Esperimento - Interpretazione del fenomeno",
-                "font": "Arial 14 bold"
-            },
-            "L2": {
-                "text": "Questo comportamento conferma che non è necessario muovere fisicamente la bobina o il magnete: ciò che conta è esclusivamente la variazione del campo magnetico nel tempo.",
-                "font": "Arial 11"
-            },
-            "L3": {
-                "text": "La bobina “sente” il cambiamento del campo che la attraversa e reagisce generando una corrente indotta.",
-                "font": "Arial 11"
-            },
-            "L4": {
-                "text": "Il verso della corrente dipende dal modo in cui il campo varia, mantenendo la coerenza con quanto osservato negli esperimenti precedenti.",
-                "font": "Arial 11"
-            }
-        },
-        {
-            "L1": {
-                "text": "4° Esperimento - Ruolo della variazione controllata",
-                "font": "Arial 14 bold"
-            },
-            "L2": {
-                "text": "In questo esperimento, la variazione del campo può essere resa più graduale o più rapida. Questo permette di osservare come cambia la risposta del galvanometro.",
-                "font": "Arial 11"
-            },
-            "L3": {
-                "text": "Una variazione rapida produce una deviazione più intensa, mentre una variazione lenta genera un effetto più debole.",
-                "font": "Arial 11"
-            },
-            "L4": {
-                "text": "Se il campo cambia in modo continuo, l’ago può restare deviato per un intervallo più lungo, seguendo l’andamento della variazione.",
-                "font": "Arial 11"
-            },
-            "L5": {
-                "text": "Questo rende evidente il legame tra velocità di variazione e intensità della corrente indotta.",
-                "font": "Arial 11"
-            }
-        },
-        {
-            "L1": {
-                "text": "4° Esperimento - Collegamento con gli altri esperimenti",
-                "font": "Arial 14 bold"
-            },
-            "L2": {
-                "text": "Rispetto ai primi tre esperimenti, qui viene eliminato ogni elemento non essenziale: non è necessario un secondo circuito, né un movimento visibile della bobina.",
-                "font": "Arial 11"
-            },
-            "L3": {
-                "text": "Si comprende che tutti i casi precedenti erano semplicemente modi diversi per ottenere una variazione del campo magnetico.",
-                "font": "Arial 11 bold"
-            },
-            "L4": {
-                "text": "Questo esperimento unifica i risultati precedenti in un’unica idea più generale.",
-                "font": "Arial 11 bold"
-            }
-        },
-        {
-            "L1": {
-                "text": "4° Esperimento - Conclusione",
-                "font": "Arial 14 bold"
-            },
-            "L2": {
-                "text": "Il quarto esperimento chiarisce definitivamente che la corrente indotta nasce quando il campo magnetico che attraversa un circuito varia nel tempo.",
-                "font": "Arial 11"
-            },
-            "L3": {
-                "text": "Non importa come questa variazione venga prodotta: movimento, interruttori o cambiamenti esterni portano allo stesso risultato.",
-                "font": "Arial 11"
-            },
-            "L4": {
-                "text": "Osservando il galvanometro, si può collegare direttamente l’andamento del campo alla risposta del circuito.Questo passaggio rappresenta una formulazione più astratta e completa del fenomeno dell’induzione elettromagnetica.",
-                "font": "Arial 11"
-            }
-        }
-    ],
-    "5° Esperimento": [
-        {
-            "L1": {
-                "text": "5° Esperimento - Struttura del quinto esperimento",
+                "text": "4° Esperimento - Struttura del quinto esperimento",
                 "font": "Arial 14 bold"
             },
             "L2": {
@@ -509,7 +411,7 @@
         },
         {
             "L1": {
-                "text": "5° Esperimento - Osservazione del galvanometro",
+                "text": "4° Esperimento - Osservazione del galvanometro",
                 "font": "Arial 14 bold"
             },
             "L2": {
@@ -523,11 +425,15 @@
             "L4": {
                 "text": "Il verso della deviazione dipende dalla direzione del movimento. Anche in questo caso, l’effetto scompare non appena il movimento si arresta.",
                 "font": "Arial 11"
+            },
+            "B1": {
+                "text": "ATTIVA MOVIMENTO",
+                "funzione": "avviaMovimento4"
             }
         },
         {
             "L1": {
-                "text": "5° Esperimento - Interpretazione fisica",
+                "text": "4° Esperimento - Interpretazione fisica",
                 "font": "Arial 14 bold"
             },
             "L2": {
@@ -545,7 +451,7 @@
         },
         {
             "L1": {
-                "text": "5° Esperimento - Ruolo del movimento del circuito",
+                "text": "4° Esperimento - Ruolo del movimento del circuito",
                 "font": "Arial 14 bold"
             },
             "L2": {
@@ -563,7 +469,7 @@
         },
         {
             "L1": {
-                "text": "5° Esperimento - Sintesi con gli altri esperimenti",
+                "text": "4° Esperimento - Sintesi con gli altri esperimenti",
                 "font": "Arial 14 bold"
             },
             "L2": {
@@ -581,7 +487,7 @@
         },
         {
             "L1": {
-                "text": "5° Esperimento - Conclusione",
+                "text": "4° Esperimento - Conclusione",
                 "font": "Arial 14 bold"
             },
             "L2": {
@@ -599,6 +505,116 @@
             "L5": {
                 "text": "Questo principio è alla base di dispositivi fondamentali come i generatori elettrici, in cui il movimento viene trasformato in energia elettrica.",
                 "font": "Arial 11 bold"
+            }
+        }
+    ],
+    "5° Esperimento": [
+        {
+            "L1": {
+                "text": "5° Esperimento - Struttura del 5° esperimento",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Nel 5° esperimento la configurazione cambia ancora: al centro si trova una bobina collegata al galvanometro, mentre ai lati sono posti due magneti fissi. La bobina può ruotare attorno al proprio asse.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "A differenza dei casi precedenti, né i magneti né il campo vengono modificati nel tempo: tutto resta statico, tranne il movimento della bobina.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Questo permette di isolare un nuovo aspetto del fenomeno: l’effetto della rotazione del circuito in un campo magnetico.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "5° Esperimento - Osservazione del galvanometro",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Quando la bobina è ferma tra i due magneti, il galvanometro non mostra alcuna deviazione, anche se il campo magnetico è presente ed intenso.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Appena la bobina inizia a ruotare, l’ago del galvanometro si sposta, indicando la presenza di una corrente indotta.",
+                "font": "Arial 11 bold"
+            },
+            "L4": {
+                "text": "Se la rotazione continua, l’ago può oscillare o mantenere una deviazione variabile nel tempo. Quando la rotazione si arresta, l’ago torna immediatamente al centro.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "5° Esperimento - Interpretazione del fenomeno",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Durante la rotazione, cambia continuamente l’orientazione della bobina rispetto al campo magnetico. Questo provoca una variazione del flusso magnetico che attraversa il circuito.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "È proprio questa variazione nel tempo a generare la corrente indotta, in perfetta coerenza con tutti gli esperimenti precedenti.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "5° Esperimento - Ruolo della rotazione",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "La rotazione svolge qui lo stesso ruolo che negli altri esperimenti era affidato all’interruttore o al movimento lineare.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Più velocemente ruota la bobina, più rapidamente varia il flusso magnetico e maggiore sarà l’intensità della corrente indotta.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Una rotazione lenta produce un effetto più debole ma comunque osservabile. Se la rotazione è uniforme, la corrente indotta varia in modo regolare nel tempo.",
+                "font": "Arial 11"
+            }
+        },
+        {
+            "L1": {
+                "text": "5° Esperimento - Caratteristiche distintive",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Questo esperimento evidenzia che non è necessario entrare o uscire da una regione di campo: è sufficiente cambiare l’angolo tra il circuito e il campo magnetico.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Anche con magneti fermi e campo costante nello spazio, si può generare corrente grazie al movimento del circuito.",
+                "font": "Arial 11 bold"
+            },
+            "L4": {
+                "text": "Il verso della corrente cambia durante la rotazione, riflettendo il modo in cui varia il flusso.",
+                "font": "Arial 11 bold"
+            }
+        },
+        {
+            "L1": {
+                "text": "5° Esperimento - Significato e applicazioni",
+                "font": "Arial 14 bold"
+            },
+            "L2": {
+                "text": "Il 5° esperimento completa la comprensione del fenomeno mostrando che la rotazione è un metodo efficace per generare corrente continua nel tempo.",
+                "font": "Arial 11"
+            },
+            "L3": {
+                "text": "Questo principio è alla base del funzionamento degli alternatori, in cui una bobina ruota in un campo magnetico producendo corrente elettrica.",
+                "font": "Arial 11"
+            },
+            "L4": {
+                "text": "Osservando il galvanometro, si può collegare direttamente la velocità di rotazione con l’intensità della corrente generata.",
+                "font": "Arial 11"
+            },
+            "L5": {
+                "text": "Si ottiene così una visione completa e unificata dell’induzione elettromagnetica: ogni variazione del flusso magnetico attraverso un circuito produce una corrente indotta.",
+                "font": "Arial 11"
             }
         }
     ]

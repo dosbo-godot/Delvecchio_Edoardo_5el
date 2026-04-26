@@ -1,8 +1,11 @@
 import tkinter as tk
-from tkinter import ttk
 import json
 import random
 import math
+
+########################
+FPS = 30
+########################
 
 GREY = '#e8e8e8'
 LARGHEZZA_LATERALE = 300
@@ -13,7 +16,7 @@ MU0 = 4*3.1415*(10**-7)
 class GestoreCanvas:
     def __init__(self):
         self.canvas : tk.Canvas = None
-        self.fps = 30
+        self.fps = FPS
         self.intervallo = 1000//self.fps
         self.mult_tempo = tk.DoubleVar(value=1)
         self.delta = self.intervallo*self.mult_tempo.get()
@@ -41,9 +44,18 @@ class GestoreCanvas:
         self.raggio_solenoide = 0.01 #m
         self.area_solenoide = self.raggio_solenoide*(PI**2)
         # PARAMETRI 2°
+        self.circuito1 = tk.PhotoImage(file='circuito1.gif')
+        self.circuito2 = tk.PhotoImage(file='circuito2.gif')
+        self.w = 0
         # PARAMETRI 3°
+        self.calamita = tk.PhotoImage(file='calamita.gif')
         # PARAMETRI 4°
+        self.vettore = 0
+        self.campo4 = tk.PhotoImage(file='campo4.gif').subsample(2,2)
+        self.circuito4 = tk.PhotoImage(file='circuito4.gif').subsample(2,2)
         # PARAMETRI 5°
+        self.spira5 = tk.PhotoImage(file='spira5.gif')
+        self.prospettiva = tk.PhotoImage(file='prospettiva5.gif')
 
     # =================================== PRIMO ===================================
     def disegnaPrimo(self):
@@ -129,39 +141,81 @@ class GestoreCanvas:
     # =================================== SECONDO ===================================
     def disegnaSecondo(self):
         self.canvas.delete('all')
+        larghezza = self.canvas.winfo_width()
+        altezza = self.canvas.winfo_height()
+        c1 = self.canvas.create_image(larghezza//2 - 200, altezza//2, image=self.circuito1)
+        c2 = self.canvas.create_image(larghezza//2 + 200, altezza//2, image=self.circuito2)
+        self.loopSecondo(c2)
 
-        x = random.randint(0, 400)
-        self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='yellow')
+    def loopSecondo(self, c2id):
+        larghezza = self.canvas.winfo_width()
+        altezza = self.canvas.winfo_height()
+        self.delta = self.intervallo*self.mult_tempo.get()
+        self.canvas.coords(c2id, (larghezza//2 + 200 + 100*(math.sin(self.w*self.tempo)), altezza//2))
         if gestore_dialogo.esperimento == '2° Esperimento':
-            self.canvas.after(self.intervallo, self.disegnaSecondo)
+            self.canvas.after(self.intervallo, self.loopSecondo, c2id)
         else: return 0
+        self.tempo += (self.delta * 0.001)
+    
+    def avviaMovimento(self):
+        self.w = 2
+
+    def fermaMovimento(self):
+        self.w = 0
     # =================================== TERZO ===================================
     def disegnaTerzo(self):
         self.canvas.delete('all')
+        larghezza = self.canvas.winfo_width()
+        altezza = self.canvas.winfo_height()
+        cala = self.canvas.create_image(larghezza//2 - 200, altezza//2, image=self.calamita)
+        c2 = self.canvas.create_image(larghezza//2 + 200, altezza//2, image=self.circuito2)
+        self.loopTerzo(c2)
 
-        x = random.randint(0, 400)
-        self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='blue')
+    def loopTerzo(self, c2id):
+        larghezza = self.canvas.winfo_width()
+        altezza = self.canvas.winfo_height()
+        self.delta = self.intervallo*self.mult_tempo.get()
+        self.canvas.coords(c2id, (larghezza//2 + 200 + 100*(math.sin(self.w*self.tempo)), altezza//2))
         if gestore_dialogo.esperimento == '3° Esperimento':
-            self.canvas.after(self.intervallo, self.disegnaTerzo)
+            self.canvas.after(self.intervallo, self.loopTerzo, c2id)
         else: return 0
+        self.tempo += (self.delta * 0.001)
     # =================================== QUARTO ===================================
     def disegnaQuarto(self):
         self.canvas.delete('all')
+        larghezza = self.canvas.winfo_width()
+        altezza = self.canvas.winfo_height()
+        campo4 = self.canvas.create_image(larghezza//2, altezza//2, image=self.campo4)
+        c4 = self.canvas.create_image(larghezza//2+220, altezza//2, image=self.circuito4)
+        self.loopQuarto(c4)
 
-        x = random.randint(0, 400)
-        self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='black')
+    def loopQuarto(self, c4id):
+        larghezza = self.canvas.winfo_width()
+        altezza = self.canvas.winfo_height()
+        self.delta = self.intervallo*self.mult_tempo.get()
+        if self.canvas.coords(c4id):
+            x = self.canvas.coords(c4id)[0]
+            if x < larghezza//2-220 or x > larghezza//2+220:
+                self.vettore *= -1
+            self.canvas.coords(c4id, x + self.vettore, altezza//2)
         if gestore_dialogo.esperimento == '4° Esperimento':
-            self.canvas.after(self.intervallo, self.disegnaQuarto)
+            self.canvas.after(self.intervallo, self.loopQuarto, c4id)
         else: return 0
+        self.tempo += (self.delta * 0.001)
+    
+    def avviaMovimento4(self):
+        if self.vettore:
+            self.vettore = 5 * (self.vettore/abs(self.vettore))
+        else: self.vettore = 5
     # =================================== QUINTO ===================================
     def disegnaQuinto(self):
+        larghezza = self.canvas.winfo_width()
+        altezza = self.canvas.winfo_height()
         self.canvas.delete('all')
-
-        x = random.randint(0, 400)
-        self.canvas.create_oval(x+20, x+20,x-20,x-20, fill='green')
-        if gestore_dialogo.esperimento == '5° Esperimento':
-            self.canvas.after(self.intervallo, self.disegnaQuinto)
-        else: return 0
+        self.canvas.create_image(larghezza//2+250, altezza//2, image=self.calamita)
+        self.canvas.create_image(larghezza//2-250, altezza//2, image=self.calamita)
+        self.canvas.create_image(larghezza//2, altezza//2, image=self.spira5)
+        self.canvas.create_image(130, 120, image=self.prospettiva)
 
 class GestoreDialogo:
     def __init__(self) -> None:
@@ -238,7 +292,14 @@ class GestoreDialogo:
                 else:
                     widget = tk.Scale(root, bg=GREY, **configurazione)
             elif tipo_widget[0] == 'B':
-                widget = tk.Button(root, bg=GREY, **configurazione)
+                if 'funzione' in list(configurazione.keys()):
+                    func_str = configurazione['funzione']
+                    func = getattr(gestore_canvas, func_str)
+                    del configurazione['funzione']
+                    widget = tk.Button(root, bg=GREY, command=func,**configurazione)
+                    configurazione['funzione'] = func_str
+                else:
+                    widget = tk.Button(root, bg=GREY,**configurazione)
             elif tipo_widget[0] == 'F':
                 widget = tk.Frame(root, bg=GREY)
                 self.caricaContenuto(widget, tipo_widget)
